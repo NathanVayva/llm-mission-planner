@@ -9,14 +9,3 @@ class MissionPlan(BaseModel):
     mission_name: str
     actions: List[Action] = Field(default_factory=list)
 
-# create plan from dict (Pydantic convertira automatiquement)
-data = {
-    "mission_name": "Inspect B",
-    "actions": [
-        {"action": "move_to", "parameters": {"target": "B1"}},
-        {"action": "scan_area", "parameters": {"resolution": "high"}}
-    ]
-}
-
-plan = MissionPlan(**data)  # ou MissionPlan.parse_obj(data) en v1
-print(plan.model_dump_json(indent=2))
