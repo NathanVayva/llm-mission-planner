@@ -1,9 +1,10 @@
 from pydantic import BaseModel, Field
-from typing import List, Dict
+from typing import List, Dict, Any
 
 class Action(BaseModel):
     action: str
-    parameters: Dict[str, str] = Field(default_factory=dict)
+    parameters: Dict[str, Any] = Field(default_factory=dict)
+
 
 class MissionPlan(BaseModel):
     mission_name: str

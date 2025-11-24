@@ -1,12 +1,28 @@
-from mission_planner.model_interface import BaseLLM, LLMMessage, LLMResponse
+from mission_planner.model_interface import LLMMessage, LLMResponse
 from openai import OpenAI
 from typing import List, Optional
+from abc import ABC, abstractmethod
 
 import json
 import requests
 
+
+
+class BaseLLM(ABC):
+    """
+    Interface générique que tous les modèles LLM doivent respecter.
+    """
+
+    @abstractmethod
+    def generate(self, messages: List[LLMMessage]) -> LLMResponse:
+        """
+        Prend une liste de messages (style ChatGPT)
+        et retourne une réponse structurée.
+        """
+        pass
+
 class OllamaLLM(BaseLLM):
-    def __init__(self, model_name="llama3.2"):
+    def __init__(self, model_name="llama3:instruct"):
         self.model_name = model_name
 
     def generate(self, messages):

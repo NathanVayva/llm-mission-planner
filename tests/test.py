@@ -13,8 +13,8 @@ chat=OllamaLLM(model_name="llama3.2")
 
 planner = MissionPlanner(chat, model_name="llama3.2")
 
+mission = "Survey Zone Beta: Move to waypoints B1, B2, and B3 at 2 m/s, take high-resolution photos at each point, then return to base."
+print("mission:", mission)
+plan = planner.generate_mission_plan(mission)
 
-
-plan = planner.generate_mission_plan("Move to waypoint A1 and take a high-resolution photo.")
-
-print(plan.model_dump_json(indent=2))
+print("Extracted JSON",plan.model_dump_json(indent=2))
